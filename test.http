@@ -1,0 +1,23 @@
+### (READ)
+GET http://localhost:33379/odata/v4/catalog/Customers
+
+###(CREATE)
+POST http://localhost:33379/odata/v4/catalog/Customers
+Content-Type: application/json
+
+{
+    "ID": "2b3c4d5e-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+    "name": "Deloitte Recruiter",
+    "email": "hiring@deloitte.com"
+}
+
+###(Testing Validation)
+POST http://localhost:33379/odata/v4/catalog/SupportTickets
+Content-Type: application/json
+
+{
+    "ID": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
+    "issue": "Broken",
+    "status": "Open",
+    "customer_ID": "2b3c4d5e-1a2b-3c4d-5e6f-7a8b9c0d1e2f"
+}
