@@ -1,0 +1,24 @@
+annotate my.SupportTickets with @(
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Value : ID,
+            Label : 'Ticket Number',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : issue,
+            Label : 'Problem Description',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : status,
+            Label : 'Current Status',
+        }
+    ],
+    UI.HeaderInfo : {
+        TypeName       : 'Support Ticket',
+        TypeNamePlural : 'Support Tickets',
+        Title          : { Value: issue } // This makes the issue text the bold title!
+    }
+);
