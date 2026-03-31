@@ -1,23 +1,48 @@
-### (READ)
-GET http://localhost:33379/odata/v4/catalog/Customers
-
-###(CREATE)
-POST http://localhost:33379/odata/v4/catalog/Customers
+### 1. SELECT: Get only Customer Names and Emails
+POST http://localhost:4004/odata/v4/catalog/customers?$select=name,email
 Content-Type: application/json
-
 {
-    "ID": "2b3c4d5e-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
-    "name": "Deloitte Recruiter",
-    "email": "hiring@deloitte.com"
+  "name": "Tarun",
+  "email": "tarun@gmail.com"
 }
 
-###(Testing Validation)
-POST http://localhost:33379/odata/v4/catalog/SupportTickets
+### CREATE Customer 2
+POST http://localhost:4004/odata/v4/catalog/customers
 Content-Type: application/json
-
 {
-    "ID": "f47ac10b-58cc-4372-a567-0e02b2c3d479",
-    "issue": "Broken",
-    "status": "Open",
-    "customer_ID": "2b3c4d5e-1a2b-3c4d-5e6f-7a8b9c0d1e2f"
+  "name": "Deloitte Recruiter",
+  "email": "hiring@deloitte.com"
 }
+
+### Select
+GET http://localhost:4004/odata/v4/catalog/customers?$select=name,email
+
+### FILTER: Find Tarun
+GET http://localhost:4004/odata/v4/catalog/customers?$filter=name eq 'Tarun'
+
+### FILTER: Open Tickets
+GET http://localhost:4004/odata/v4/catalog/SupportTickets?$filter=status eq 'Open'
+
+### CREATE Customer WITH Tickets (Auto-Link)
+POST http://localhost:4004/odata/v4/catalog/customers
+Content-Type: application/json
+//give me everything about customers and tickets just using expand only
+{
+  "name": "Tarun",
+  "email": "tarun@gmail.com",
+  "tickets": [
+    {
+      "issue": "Login Issue",
+      "status": "Open"
+    },
+    {
+      "issue": "Payment Failed",
+      "status": "Open"
+    }
+  ]
+}
+###
+GET http://localhost:4004/odata/v4/catalog/customers?$expand=tickets
+
+###
+GET http://localhost:4004/odata/v4/catalog/customers?$select=name&expand=tickets
