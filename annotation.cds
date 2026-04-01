@@ -1,5 +1,3 @@
-// using { CatalogService } from '../srv/cat-service';
-
 annotate CatalogService.SupportTickets with @(
 
     UI.LineItem : [
@@ -63,26 +61,6 @@ annotate CatalogService.SupportTickets with {
                     ValueListProperty : 'name',
                 },
             ],
-        }
-    );
-};
-
-annotate CatalogService.SupportTickets with {
-    customer_ID @(
-        Common.ValueList : {
-            $Type : 'Common.ValueListType',
-            CollectionPath : 'customers',   // 👈 small c (matches your service)
-            Parameters : [
-                {
-                    $Type : 'Common.ValueListParameterInOut',
-                    LocalDataProperty : customer_ID,
-                    ValueListProperty : 'ID',
-                },
-                {
-                    $Type : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'name',
-                }
-            ]
         }
     );
 };
