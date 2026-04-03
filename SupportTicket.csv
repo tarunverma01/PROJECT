@@ -1,0 +1,7 @@
+ID,issue,status,customer_ID,priority
+101,Login Issue,Open,1,High
+102,Payment Failed,In Progress,1,Low
+103,Password Reset,Open,2,Low
+104,Order Not Received,Open,3,High
+105,Billing Error,Closed,4,Medium
+106,Account Locked,Open,2,Medium
