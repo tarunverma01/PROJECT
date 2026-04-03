@@ -1,3 +1,5 @@
+// using { CatalogService } from '../srv/cat-service';
+
 annotate CatalogService.SupportTickets with @(
 
     UI.LineItem : [
@@ -15,6 +17,11 @@ annotate CatalogService.SupportTickets with @(
             $Type : 'UI.DataField',
             Value : status,
             Label : 'Current Status',
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : priority,
+            Label : 'Priority'
         },
         {
             $Type : 'UI.DataField',
@@ -45,22 +52,26 @@ annotate CatalogService.SupportTickets with @(
     }
 );
 
+// using { CatalogService } from '../srv/cat-service';
+
 annotate CatalogService.SupportTickets with {
-    customer @(
+    customer_ID @(
         Common.ValueList : {
             $Type : 'Common.ValueListType',
-            CollectionPath : 'Customers',
+
+            CollectionPath : 'customers',
+
             Parameters : [
                 {
                     $Type : 'Common.ValueListParameterInOut',
                     LocalDataProperty : customer_ID,
-                    ValueListProperty : 'ID',
+                    ValueListProperty : 'ID'
                 },
                 {
                     $Type : 'Common.ValueListParameterDisplayOnly',
-                    ValueListProperty : 'name',
-                },
-            ],
+                    ValueListProperty : 'name'
+                }
+            ]
         }
     );
 };
