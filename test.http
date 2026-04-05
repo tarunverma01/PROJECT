@@ -1,4 +1,4 @@
-### 1. SELECT: Get only Customer Names and Emails
+/*### 1. SELECT: Get only Customer Names and Emails
 POST http://localhost:4004/odata/v4/catalog/customers?$select=name,email
 Content-Type: application/json
 {
@@ -46,3 +46,33 @@ GET http://localhost:4004/odata/v4/catalog/customers?$expand=tickets
 
 ###
 GET http://localhost:4004/odata/v4/catalog/customers?$select=name&expand=tickets
+*/
+
+
+
+### Test Placement Logic: Amit (GPA 6.8) applying to SAP (Min GPA 7.5)
+POST http://localhost:4004/odata/v4/catalog/JobApplications
+Content-Type: application/json
+
+{
+    "ID": "f47ac10b-58cc-4372-a567-0e02b2c3d999",
+    "student_ID": 3,
+    "company_ID": 2,
+    "application_status": "Applied"
+}
+
+### Get Student IDs
+GET http://localhost:4004/odata/v4/catalog/Students
+
+### Get Company IDs
+GET http://localhost:4004/odata/v4/catalog/Companies
+
+### Test Placement Logic: Amit (GPA 6.8) applying to SAP (Min GPA 7.5)
+POST http://localhost:4004/odata/v4/catalog/JobApplications
+Content-Type: application/json
+
+{
+    "student_ID": 3,
+    "company_ID": 2,
+    "application_status": "Applied"
+}
