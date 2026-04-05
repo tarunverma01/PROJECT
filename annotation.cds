@@ -1,3 +1,4 @@
+/*
 // using { CatalogService } from '../srv/cat-service';
 
 annotate CatalogService.SupportTickets with @(
@@ -74,4 +75,81 @@ annotate CatalogService.SupportTickets with {
             ]
         }
     );
+};
+
+*/
+
+
+using CatalogService from '../srv/cat-service';
+
+annotate CatalogService.JobApplications with @(
+    UI.LineItem : [
+        {
+            $Type : 'UI.DataField',
+            Value : student_ID,
+            Label : 'Applicant Name'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : company_ID,
+            Label : 'Company Name'
+        },
+        {
+            $Type : 'UI.DataField',
+            Value : application_status,
+            Label : 'Current Status'
+        }
+    ],
+    UI.HeaderInfo : {
+        TypeName       : 'Job Application',
+        TypeNamePlural : 'Job Applications',
+        Title          : { Value: application_status } 
+    }
+);
+
+annotate CatalogService.JobApplications with {
+    
+    student @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Students',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : student_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name',
+                }
+            ],
+        }
+    );
+
+    company @(
+        Common.ValueList : {
+            $Type : 'Common.ValueListType',
+            CollectionPath : 'Companies',
+            Parameters : [
+                {
+                    $Type : 'Common.ValueListParameterInOut',
+                    LocalDataProperty : company_ID,
+                    ValueListProperty : 'ID',
+                },
+                {
+                    $Type : 'Common.ValueListParameterDisplayOnly',
+                    ValueListProperty : 'name', 
+                }
+            ],
+        }
+    );
+};
+
+annotate CatalogService.Students with {
+    ID @Common.Text : name @Common.TextArrangement : #TextOnly;
+};
+
+annotate CatalogService.Companies with {
+    ID @Common.Text : name @Common.TextArrangement : #TextOnly;
 };
